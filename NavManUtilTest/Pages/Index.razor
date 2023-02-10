@@ -1,0 +1,40 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<div>
+    <h4>Simple example, on how to use the NavManUtil-Service</h4>
+    <button class="btn btn-primary my-1" @onclick="NavigateTestNoArgument">Test Re-Route (No argument)</button>
+    <button class="btn btn-warning my-1" @onclick="NavigateTestSingle">Test Re-Route (Single argument)</button>
+    <button class="btn btn-success my-1" @onclick="NavigateTestMultiple" >Test Re-Route (Multiple arguments)</button>
+</div>
+
+
+<p class="mt-2">Active: @NavMan.GetNavigationManager().Uri</p>
+
+<div class="mt-2">
+    <small>Input the parameters ONLY, the first seperated by '?', the following by '&'<br />Example: <mark>?test=thetest&secondtest=2&one=1</mark></small>
+    <br />
+    <input type="text" style="width: 30%" @bind="FreeformParametesTextinput" />
+    <br />
+    <button class="btn btn-danger mt-2" @onclick="NavigateCustomParameter" >Test Re-Route (Custom arguments)</button>
+</div>
+
+<div class="mt-2">
+        <h4>Parameters:</h4>
+
+        @if(ParametersList.Count > 0) {
+        <div class="mt-2">
+            <h5>Parameters found: <b>@ParametersList.Count</b></h5>
+            @foreach (KeyValuePair<string,string> para in ParametersList)
+            {
+                <p class="mt-1">Name: <b>@para.Key</b> &rarr; Value: <b>@para.Value</b></p>
+            }
+        </div>
+    } else
+    {
+        <h5>No parameters in URL found</h5>
+    }
+</div>
+
+<img style="height: 550px" alt="Implementation of service" src="/Code-Carbon.svg" />

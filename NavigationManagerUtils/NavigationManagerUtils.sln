@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigationManagerUtils", "NavigationManagerUtils.csproj", "{901BD34B-4BF3-42E8-894C-BF6EDF32A10B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavManUtilTest", "..\NavManUtilTest\NavManUtilTest.csproj", "{F4B29B99-0B31-4C17-B9B6-A2FCCA685187}"
+	ProjectSection(ProjectDependencies) = postProject
+		{901BD34B-4BF3-42E8-894C-BF6EDF32A10B} = {901BD34B-4BF3-42E8-894C-BF6EDF32A10B}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{901BD34B-4BF3-42E8-894C-BF6EDF32A10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901BD34B-4BF3-42E8-894C-BF6EDF32A10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{901BD34B-4BF3-42E8-894C-BF6EDF32A10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901BD34B-4BF3-42E8-894C-BF6EDF32A10B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4B29B99-0B31-4C17-B9B6-A2FCCA685187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B29B99-0B31-4C17-B9B6-A2FCCA685187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B29B99-0B31-4C17-B9B6-A2FCCA685187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B29B99-0B31-4C17-B9B6-A2FCCA685187}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F17E6BB1-7DEB-400A-B2E0-CC9E51CB50B1}
+	EndGlobalSection
+EndGlobal
