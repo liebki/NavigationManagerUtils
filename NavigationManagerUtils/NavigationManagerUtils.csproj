@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-	<Version>0.0.1</Version>
+    <TargetFramework>net8.0</TargetFramework>
+	<Version>0.0.2</Version>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWin32Manifest>true</NoWin32Manifest>
@@ -14,7 +14,11 @@
     <PackageProjectUrl>https://github.com/liebki/NavigationManagerUtils</PackageProjectUrl>
     <RepositoryUrl>https://github.com/liebki/NavigationManagerUtils</RepositoryUrl>
     <PackageTags>NavigationManager, blazor, asp, dotnet, web</PackageTags>
-    <Description>Simple Service to enhance  the NavigationManager by a couple of things I often use and find useful.</Description>
+    <Description>Very simple service to enhance the functionality of the NavigationManager by a few things I find useful.</Description>
+    <PackageReleaseNotes>Upgrade to Core 8.0, renamed parameters, methods and switched to newest language code style.</PackageReleaseNotes>
+    <LangVersion>12</LangVersion>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license>LICENSE</license>
   </PropertyGroup>
 
 
@@ -23,7 +27,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <Link>LICENSE</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\README.md">
+      <Link>README.md</Link>
+    </Content>
   </ItemGroup>
 
 </Project>

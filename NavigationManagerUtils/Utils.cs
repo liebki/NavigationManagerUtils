@@ -1,61 +1,45 @@
-﻿using System;
-using System.Linq;
-
-namespace NavigationManagerUtils
+﻿namespace NavigationManagerUtils
 {
     internal static class Utils
     {
-        internal static Dictionary<string, string> ParseUrlParameters(bool RemoveWhitespaceEntityInValue, bool RemoveWhitespaceEntityInKey, Dictionary<string, string> Parameters, string Url)
-        {
-            Dictionary<string, string> ParametersClone = Parameters;
-            string UrlArguments = Url.Split('?')[1];
+        private const string WhitespaceEncoding = "%20";
 
-            if (Url.Contains('&'))
+        internal static Dictionary<string, string> ParseUrlParameters(bool removeWhitespaceEntityInValue, bool removeWhitespaceEntityInKey, Dictionary<string, string> parameters, string url)
+        {
+            string urlArguments = url.Split('?')[1];
+            if (url.Contains('&'))
             {
-                MultipleParametersParse(RemoveWhitespaceEntityInKey, ParametersClone, UrlArguments);
+                MultipleParametersParse(removeWhitespaceEntityInKey, parameters, urlArguments);
             }
             else
             {
-                SingleParameterParse(RemoveWhitespaceEntityInKey, ParametersClone, UrlArguments);
+                SingleParameterParse(removeWhitespaceEntityInKey, parameters, urlArguments);
             }
 
-            if (RemoveWhitespaceEntityInValue)
+            if (!removeWhitespaceEntityInValue)
+                return parameters;
+            
+            foreach (KeyValuePair<string, string> para in parameters)
             {
-                foreach (KeyValuePair<string, string> para in ParametersClone)
-                {
-                    ParametersClone[para.Key] = para.Value.Replace("%20", " ");
-                }
+                parameters[para.Key] = para.Value.Replace(WhitespaceEncoding, " ");
             }
-            return ParametersClone;
+            
+            return parameters;
         }
 
-        private static void SingleParameterParse(bool RemoveWhitespaceEntityInKey, Dictionary<string, string> ParametersClone, string UrlArguments)
+        private static void SingleParameterParse(bool removeWhitespaceEntityInKey, Dictionary<string, string> parametersTemp, string urlArguments)
         {
-            string[] SingleArgument = UrlArguments.Split('=');
-            if (RemoveWhitespaceEntityInKey)
-            {
-                ParametersClone.Add(SingleArgument[0].Replace("%20", " "), SingleArgument[1]);
-            }
-            else
-            {
-                ParametersClone.Add(SingleArgument[0], SingleArgument[1]);
-            }
+            string[] singleArgument = urlArguments.Split('=');
+            parametersTemp.Add(removeWhitespaceEntityInKey ? singleArgument[0].Replace(WhitespaceEncoding, " ") : singleArgument[0], singleArgument[1]);
         }
 
-        private static void MultipleParametersParse(bool RemoveWhitespaceEntityInKey, Dictionary<string, string> ParametersClone, string UrlArguments)
+        private static void MultipleParametersParse(bool removeWhitespaceEntityInKey, Dictionary<string, string> parametersClone, string urlArguments)
         {
-            string[] ArgumentGroups = UrlArguments.Split('&');
-            foreach (string arggroup in ArgumentGroups)
+            string[] argumentGroups = urlArguments.Split('&');
+            foreach (string argGroup in argumentGroups)
             {
-                string[] SingleArgument = arggroup.Split('=');
-                if (RemoveWhitespaceEntityInKey)
-                {
-                    ParametersClone.Add(SingleArgument[0].Replace("%20", " "), SingleArgument[1]);
-                }
-                else
-                {
-                    ParametersClone.Add(SingleArgument[0], SingleArgument[1]);
-                }
+                string[] singleArgument = argGroup.Split('=');
+                parametersClone.Add(removeWhitespaceEntityInKey ? singleArgument[0].Replace(WhitespaceEncoding, " ") : singleArgument[0], singleArgument[1]);
             }
         }
     }

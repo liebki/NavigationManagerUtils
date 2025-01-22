@@ -1,51 +1,76 @@
 # NavigationManagerUtils
 
-## Technologies
+## Overview
 
-### Created using
--.NET Core 6.0
+**NavigationManagerUtils** is a very simple injectable service, created to enhance the capabilities of the `NavigationManager` in Blazor applications. It provides additional utility methods that simplify navigation and URL parameter management.
+
+---
+
+## Technologies Used
+
+- **.NET Core 8.0**
+
+---
 
 ## Features
 
-### What is this?
-- A simple service, injectable in a blazor application, to enhance the NavigationManager by a couple of things I often use and find useful.
+### What is NavigationManagerUtils?
 
-### Example?
-- The 'NavManUtilTest' project, is a simplpe example blazor-server application
+This is an injectable service for Blazor applications that builds upon the standard `NavigationManager`, adding commonly-used features for navigation and URL management.
 
-### General
+### Example Usage
 
-#### Usage
-- Add the service to WebApplicationBuilder or MauiBuilder using 
-```builder.Services.AddTransient<NavManUtils>();```
-- To use it, inject it like this in code:
-```
-[Inject]
-private NavManUtils NavMan { get; set; }
-```
-or in a razor component like this:
-```
-@inject NavManUtils NavMan
+To see this utility in action, refer to the `NavManUtilTest` project—a simple Blazor Server application that demonstrates its functionality.
+
+---
+
+## Getting Started
+
+### Installation
+
+Add the service to your application during configuration:
+
+```csharp
+builder.Services.AddTransient<NavManUtils>();
 ```
 
-#### Current functionality
-- Navigate(string url, bool force = true)
-	- Navigate to a new URL
-- Reload(bool force = true)
-	- Reload the page
-- UrlHasParameters()
-	- Get a bool back, to find out find out if the current URL contains parameters to extract
-- GetUrlParameters(bool RemoveWhitespaceEntityInValue = false, bool RemoveWhitespaceEntityInKey = false)
-	- Get a Dictionary<string, string> with the parameter-keys as keys and the parameter-values as values
-- GetNavigationManager()
-	- Access the NavigationManager, without the need of injecting it seperatly
+### Injecting the Service
+
+1. **In Code**  
+   Use the `[Inject]` attribute:
+
+   `[Inject] private NavManUtils NavMan { get; set; }`
+
+2. **In Razor Components**  
+   Use the `@inject` directive:
+
+   `@inject NavManUtils NavMan`
+
+---
+
+## Available Methods
+
+1. **`Navigate(string url, bool force = true)`**  
+   Navigate to the specified URL. The `force` parameter determines whether to reload the page even if already on the target URL.
+
+2. **`[DEPRECATED] Reload(bool force = true)`**  
+   Reload the current page. The `force` parameter determines whether to reload from the server.
+
+3. **`UrlHasParameters()`**  
+   Returns `true` if the current URL contains query parameters, otherwise `false`.
+
+4. **`GetUrlParameters(bool removeWhitespaceEntityInValue = false, bool removeWhitespaceEntityInKey = false)`**  
+   Retrieves the query parameters from the current URL as a `Dictionary<string, string>`.
+	- `removeWhitespaceEntityInValue`: Strips %20 whitespace entities from parameter values.
+	- `removeWhitespaceEntityInKey`: Strips %20 whitespace entities from parameter keys.
+
+5. **`GetNavMan()`**  
+   Provides access to the underlying `NavigationManager` instance without requiring separate injection.
+
+---
 
 ## License
 
-**Software:** NavigationManagerUtils
+This project is licensed under the **GNU General Public License v3.0**. For more details, visit [GNU License](https://choosealicense.com/licenses/gpl-3.0/).
 
-**License:** GNU General Public License v3.0
-
-**Licensor:** Kim Mario Liebl
-
-[GNU](https://choosealicense.com/licenses/gpl-3.0/)
+--- 
